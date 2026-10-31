@@ -36,9 +36,9 @@ python3 -m http.server 4173   # 浏览器打开 localhost:4173 拖动"resolution
 
 （以上每行都是 `node bench/bench.mjs` 扫出的真实输出；`bench/verify.mjs` 的 A9 会校验 JSON 里的 anchor 与本次内存复算的哈希相等。）
 
-**性能（res=64 整条管线，workload 恒定，1 次 warmup + 9 次重复）**：
-- 冷启动（首遍全管线）= 208.7 ms（其中 exact 体素化 144.6 ms）。
-- 热跑中位数：exact 依赖体素化 93.5 ms（rel.stddev 1.9%），配套采样基线 3.7 ms，洪泛 10.5 ms，逃逸扫描 1.0 ms，全管线 109.2 ms。
+**性能（res=64 整条管线，workload 恒定，1 次 warmup + 9 次重复，`bench/result.json`）**：
+- 冷启动（首遍全管线）= 184.3 ms（其中 exact 体素化 133.2 ms，见 `workload.coldStartBreakdownMs`）。
+- 热跑中位数：exact 依赖体素化 93.4 ms（rel.stddev 1.38%），配套采样基线 3.8 ms，洪泛 10.4 ms，逃逸扫描 0.9 ms，全管线 108.7 ms。
 - 数字下载自 `bench/result.json` 的 `timing`、`workload` 与 `scan`，字段 `n/min/median/p75/p95/stddev` 齐备。
 
 **verify 断言（全部来自真实运行）**：SAT 错误率 0（A1 手造病例 + A2 3000 对随机三角/盒、167 万探测点 0 假阴性）；exact 0/20000 逃逸且 naive 279>0（A3）；exact 0 泄漏（A4）；密封实体体积 vs 解析球体体积误差 0.114%（A5）；naive 占用是 exact 的严格子集（A6）；确定性重跑同哈希（A7）；生成器两次字节一致（A8）；JSON anchor 与本运行一致（A9）。
