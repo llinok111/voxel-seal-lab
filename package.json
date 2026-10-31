@@ -1,0 +1,12 @@
+{
+  "name": "voxel-seal-lab",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Conservative (watertight) mesh voxelization with a node-verifiable escape certificate and a browser resolution scanner.",
+  "scripts": {
+    "sample": "node tools/gen-sample.mjs",
+    "verify": "node bench/verify.mjs",
+    "bench": "node bench/bench.mjs"
+  }
+}

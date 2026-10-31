@@ -1,0 +1,181 @@
+{
+  "generatedBy": "bench/bench.mjs",
+  "date": "2026-11-01",
+  "node": "v24.19.0",
+  "asset": {
+    "file": "data/icosphere.json",
+    "generator": "tools/gen-sample.mjs",
+    "vertices": 642,
+    "triangles": 1280,
+    "sphereRadius": 0.999999
+  },
+  "claim": "Same work budget (one triangle-box SAT test vs one barycentric sample): exact SAT voxelization has 0/20000 surface escapes at every scanned resolution, the sampling baseline has 267/20000 at res=48.",
+  "workload": {
+    "timingResolution": 64,
+    "escapeSamples": 20000,
+    "warmupPasses": 1,
+    "measuredRepetitions": 9,
+    "coldStartMs": 254.324,
+    "coldStartBreakdownMs": {
+      "exact": 172.468,
+      "naive": 19.066
+    }
+  },
+  "timing": {
+    "exactMs": {
+      "n": 9,
+      "min": 91.82,
+      "p25": 92.507,
+      "median": 94.828,
+      "p75": 97.535,
+      "p95": 100.496,
+      "max": 100.496,
+      "stddev": 3.118,
+      "relStddev": 0.0327
+    },
+    "naiveMs": {
+      "n": 9,
+      "min": 3.685,
+      "p25": 3.735,
+      "median": 3.757,
+      "p75": 3.808,
+      "p95": 3.863,
+      "max": 3.863,
+      "stddev": 0.056,
+      "relStddev": 0.0148
+    },
+    "escapeScanMs": {
+      "n": 9,
+      "min": 0.981,
+      "p25": 0.991,
+      "median": 1.013,
+      "p75": 1.507,
+      "p95": 4.344,
+      "max": 4.344,
+      "stddev": 1.339,
+      "relStddev": 0.7463
+    },
+    "floodMs": {
+      "n": 9,
+      "min": 10.124,
+      "p25": 10.268,
+      "median": 10.394,
+      "p75": 11.9,
+      "p95": 14.556,
+      "max": 14.556,
+      "stddev": 1.421,
+      "relStddev": 0.1268
+    },
+    "totalMs": {
+      "n": 9,
+      "min": 107.253,
+      "p25": 107.704,
+      "median": 112.007,
+      "p75": 114.184,
+      "p95": 121.061,
+      "max": 121.061,
+      "stddev": 4.283,
+      "relStddev": 0.0382
+    }
+  },
+  "scan": [
+    {
+      "res": 16,
+      "cell": 0.1325,
+      "exactWorkUnits": 7954,
+      "naiveWorkUnits": 7954,
+      "exactOccupied": 1064,
+      "naiveOccupied": 947,
+      "exactEscapes": 0,
+      "naiveEscapes": 86,
+      "escapeSamples": 20000,
+      "exactLeaks": 0,
+      "naiveLeaks": 0,
+      "exactSealedInterior": 1088,
+      "naiveSealedInterior": 1088,
+      "exactHash": "82004cad",
+      "naiveHash": "d3bd0548"
+    },
+    {
+      "res": 24,
+      "cell": 0.08833333,
+      "exactWorkUnits": 14250,
+      "naiveWorkUnits": 14250,
+      "exactOccupied": 2432,
+      "naiveOccupied": 2090,
+      "exactEscapes": 0,
+      "naiveEscapes": 262,
+      "escapeSamples": 20000,
+      "exactLeaks": 0,
+      "naiveLeaks": 0,
+      "exactSealedInterior": 3648,
+      "naiveSealedInterior": 3648,
+      "exactHash": "041cb985",
+      "naiveHash": "a443e209"
+    },
+    {
+      "res": 32,
+      "cell": 0.06625,
+      "exactWorkUnits": 23904,
+      "naiveWorkUnits": 23904,
+      "exactOccupied": 4304,
+      "naiveOccupied": 3599,
+      "exactEscapes": 0,
+      "naiveEscapes": 314,
+      "escapeSamples": 20000,
+      "exactLeaks": 0,
+      "naiveLeaks": 0,
+      "exactSealedInterior": 8744,
+      "naiveSealedInterior": 8744,
+      "exactHash": "a2f222f5",
+      "naiveHash": "76c8e538"
+    },
+    {
+      "res": 48,
+      "cell": 0.04416667,
+      "exactWorkUnits": 53798,
+      "naiveWorkUnits": 53798,
+      "exactOccupied": 9656,
+      "naiveOccupied": 8182,
+      "exactEscapes": 0,
+      "naiveEscapes": 279,
+      "escapeSamples": 20000,
+      "exactLeaks": 0,
+      "naiveLeaks": 0,
+      "exactSealedInterior": 29824,
+      "naiveSealedInterior": 29824,
+      "exactHash": "4a280e9d",
+      "naiveHash": "0d119deb"
+    },
+    {
+      "res": 64,
+      "cell": 0.033125,
+      "exactWorkUnits": 102292,
+      "naiveWorkUnits": 102292,
+      "exactOccupied": 17144,
+      "naiveOccupied": 14557,
+      "exactEscapes": 0,
+      "naiveEscapes": 278,
+      "escapeSamples": 20000,
+      "exactLeaks": 0,
+      "naiveLeaks": 0,
+      "exactSealedInterior": 70608,
+      "naiveSealedInterior": 70608,
+      "exactHash": "9cc4263d",
+      "naiveHash": "f3e6b266"
+    }
+  ],
+  "anchors": {
+    "16": "82004cad",
+    "24": "041cb985",
+    "32": "a2f222f5",
+    "48": "4a280e9d",
+    "64": "9cc4263d"
+  },
+  "invariants": {
+    "exactEscapesAtRes48": 0,
+    "naiveEscapesAtRes48": 279,
+    "exactLeaksMax": 0,
+    "naiveLeaksMax": 0
+  }
+}

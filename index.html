@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>voxel-seal-lab — conservative voxelization scanner</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+         background: #0b0f14; color: #cfe3f5; }
+  #hud { position: fixed; top: 12px; left: 12px; width: 430px; padding: 12px 14px;
+         background: rgba(10,16,24,.88); border: 1px solid #1d2b3a; border-radius: 8px;
+         backdrop-filter: blur(6px); }
+  h1 { margin: 0 0 6px; font-size: 14px; letter-spacing: .02em; color: #6fd3c7; }
+  .sub { color: #7c93a8; margin-bottom: 10px; }
+  table { width: 100%; border-collapse: collapse; }
+  td { padding: 1px 0; vertical-align: top; }
+  td.k { color: #7c93a8; width: 45%; }
+  td.v { color: #e8f4ff; }
+  .ok { color: #4ade80; font-weight: 700; }
+  .bad { color: #f87171; font-weight: 700; }
+  .warn { color: #fbbf24; }
+  input[type=range] { width: 100%; margin: 8px 0 2px; }
+  .legend { margin-top: 8px; color: #7c93a8; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; }
+  #canvas { display: block; width: 100vw; height: 100vh; }
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.169.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.169.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<div id="hud">
+  <h1>voxel-seal-lab</h1>
+  <div class="sub">conservative triangle-box SAT voxelization · 逃逸证书 · 浏览器与 node 同一份 core.mjs</div>
+  <table>
+    <tr><td class="k">resolution</td><td class="v"><span id="m-res">48</span> (<span id="m-cell"></span>)</td></tr>
+    <tr><td class="k">work units (SAT tests / samples)</td><td class="v" id="m-work"></td></tr>
+    <tr><td class="k">occupied voxels (exact / naive)</td><td class="v" id="m-occ"></td></tr>
+    <tr><td class="k">surface escapes (exact)</td><td class="v" id="m-esc"></td></tr>
+    <tr><td class="k">surface escapes (naive baseline)</td><td class="v" id="m-esc-n"></td></tr>
+    <tr><td class="k">outside-flood leaks (exact / naive)</td><td class="v" id="m-leak"></td></tr>
+    <tr><td class="k">occupancy FNV-1a (browser)</td><td class="v" id="m-hash"></td></tr>
+    <tr><td class="k">occupancy FNV-1a (node anchor)</td><td class="v" id="m-anchor"></td></tr>
+    <tr><td class="k">dual-end agreement</td><td class="v" id="m-match">…</td></tr>
+    <tr><td class="k">browser recompute</td><td class="v" id="m-ms"></td></tr>
+  </table>
+  <input id="res" type="range" min="12" max="72" step="4" value="48" />
+  <div class="legend">
+    <span class="dot" style="background:#3fbfae"></span>occupied voxel
+    <span class="dot" style="background:#4ade80;margin-left:8px"></span>surface sample inside an occupied voxel
+    <span class="dot" style="background:#f87171;margin-left:8px"></span>surface sample MISSED by the naive baseline (<span id="m-missed"></span>)
+  </div>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>
